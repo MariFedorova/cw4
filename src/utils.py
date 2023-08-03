@@ -5,6 +5,7 @@ from classes.vacancy import Vacancy
 
 
 def instance_vacancy_hh(data):
+    """ создает список вакансий HH.ru из экземпляров класса"""
     vacancy_list = []
     for item in data:
         vacancy = Vacancy(item["id"],
@@ -22,6 +23,7 @@ def instance_vacancy_hh(data):
 
 
 def instance_vacancy_sj(data):
+    """ создает список вакансий SJ из экземпляров класса"""
     vacancy_list = []
     for item in data:
         vacancy = Vacancy(item["id"],
@@ -39,6 +41,7 @@ def instance_vacancy_sj(data):
 
 
 def filter_vacancies(list_vacancies, filter_words):
+    """ фильтрует по ключевым словам, введенным пользователем"""
     new_list = []
     for item in list_vacancies:
         for word in filter_words:
@@ -54,6 +57,7 @@ def filter_vacancies(list_vacancies, filter_words):
 
 
 def sorted_data(list_vacancies):
+    """ сортировка по дате """
     for item in list_vacancies:
         if 'superjob.ru' in item['url']:
             item['published_at'] = datetime.fromtimestamp(item['published_at'])
@@ -70,6 +74,7 @@ def sorted_data(list_vacancies):
 
 
 def instance_vacancy_sorted(data):
+    """ создание отсортированного списка"""
     new_list = []
     for item in data:
         vacancy = Vacancy(item["vacancy_id"],
@@ -85,11 +90,12 @@ def instance_vacancy_sorted(data):
         new_list.append(vacancy)
     return (new_list)
 
+
 def top_n_vacancies(list_vacancies, n):
+    """ выведение топа вакансий по значению, введенному пользователем"""
     counter = 1
     for item in list_vacancies:
         print(item)
         counter += 1
         if counter > n:
             break
-

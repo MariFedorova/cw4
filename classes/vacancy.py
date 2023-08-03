@@ -1,4 +1,5 @@
 class Vacancy:
+    """ Для создания из списка вакансий экземпляров класса"""
     def __init__(self, vacancy_id, name, city, url, salary_from, salary_to,
                  currency, published_at, requirement, responsibility):
         self.vacancy_id = vacancy_id
@@ -24,6 +25,7 @@ class Vacancy:
                f'responsibility={self.responsibility})'
 
     def __str__(self):
+        """ представление для пользователя с учетом того, что может быть не указана зп"""
         salary = ""
         if self.salary_from and self.salary_to:
             salary = f"зарплата: от {self.salary_from} до {self.salary_to}"
@@ -41,4 +43,5 @@ class Vacancy:
                f"обязанности: {self.responsibility}\n"
 
     def __gt__(self, other):
+        """ для сравнения по зарплате"""
         return self.salary_from > other.salary_from

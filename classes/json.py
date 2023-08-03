@@ -4,6 +4,8 @@ from abc import ABC, abstractmethod
 
 
 class TreatVacancy(ABC):
+
+    """ абстрактный класс для работы с вакансиями"""
     @abstractmethod
     def add_vacancy(self, vacancy):
         pass
@@ -16,6 +18,7 @@ class TreatVacancy(ABC):
 
 
 class JSONSaver(TreatVacancy):
+    """ добавляет вакансии с обоих сайтов. Записывает в файл json"""
     def add_vacancy(self, vacancy, vacancy2):
         new_list = []
         counter = 0
@@ -30,6 +33,7 @@ class JSONSaver(TreatVacancy):
         print(f"\nнайдено {counter} вакансий.\n")
 
     def save_json(self, list_vacancy):
+        """сохраняет топ вакансий в json файл"""
         new_list = []
         for item in list_vacancy:
             new_list.append(item.__dict__)

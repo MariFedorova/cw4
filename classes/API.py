@@ -8,13 +8,17 @@ SUPERJOB_API = "v3.r.137693077.1be4c5ca3276df7e216e968fdb6766cbafb1cb18.9a6d5939
 
 
 class VacancyAPI(ABC):
+
+    """ абстрактный класс для работы с API"""
     @abstractmethod
     def get_vacancies(self, name):
         pass
 
 
 class HHAPI(VacancyAPI):
+    """ Класс для работы с HH.ru. Наследуется от абстрактного"""
     def get_vacancies(self, name):
+        """ запрос к сайту HH по параметрам. Выводит до 100 страниц."""
         params = {
             'text': f'NAME:{name}',
             'page': 0,
@@ -38,6 +42,7 @@ class HHAPI(VacancyAPI):
         return data
 
 class SJAPI(VacancyAPI):
+    """ запрос к сайту SJ по параметрам.Передается ключ для работы с API- headers.  Выводит до 100 страниц."""
     def get_vacancies(self, name):
         headers = {'X-Api-App-Id': SUPERJOB_API}
         params = {
