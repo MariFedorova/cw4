@@ -39,3 +39,6 @@ class Vacancy:
                f"дата публикации: {self.published_at}\n, " \
                f"требования: {self.requirement}\n, " \
                f"обязанности: {self.responsibility}\n"
+
+    def __gt__(self, other):
+        return self.salary_from > other.salary_from
